@@ -1,11 +1,13 @@
-"use client"
-import Image from "next/image";
+"use client";
 import React, { useState } from "react";
+import Image from "next/image";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+import { Roboto } from "@next/font/google";
+
 import rocket from "./rocket.png";
 import AddTodoForm from "@/components/AddTodoForm";
-import { Roboto } from "@next/font/google";
 import TodoList from "@/components/TodoList";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -27,7 +29,7 @@ const Home = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <main
-        className={`bg-gray-800 h-screen text-white pt-14 px-4 ${roboto.className}`}
+        className={`bg-gray-800 min-h-screen text-white py-14 px-4 ${roboto.className}`}
       >
         <div className="flex items-center gap-5 justify-center mb-8">
           <Image src={rocket} alt="logo" className="w-8 " />

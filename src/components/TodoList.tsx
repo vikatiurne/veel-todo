@@ -25,7 +25,6 @@ const TodoList = () => {
       key={todo.id}
       id={todo.id}
       title={todo.title}
-      body={todo.body}
       completed={todo.completed}
     />
   ));

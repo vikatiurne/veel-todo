@@ -23,6 +23,6 @@ export const fetchUpdateTodo = async (
   return responce.data;
 };
 export const fetchDeleteTodo = async (id: number) => {
-  const responce = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/${id}`);
+  const responce = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/${id}`);
   return responce.data;
 };

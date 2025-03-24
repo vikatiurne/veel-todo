@@ -10,7 +10,7 @@ const AddTodoForm = () => {
 
   const onSubmit: SubmitHandler<ITodo> = async (data: ITodo) => {
     console.log(data);
-    await fetchCreateTodo({ title: data.title, body: data.body });
+    await fetchCreateTodo({ title: data.title });
     reset();
   };
   return (
@@ -30,25 +30,12 @@ const AddTodoForm = () => {
           <p className="text-red-500 text-sm pl-4">{errors.title?.message}</p>
         </div>
 
-        <div className="flex justify-between items-start  gap-3 flex-wrap  w-full">
-          <div className="w-full md:w-4/5">
-            <input
-              {...register("body", { required: "this field is required" })}
-              className="p-4 border border-gray-400 rounded-2xl w-full"
-              type="text"
-              placeholder="Add new task..."
-            />
-
-            <p className="text-red-500 text-sm pl-4">{errors.body?.message}</p>
-          </div>
-
-          <button
-            className="bg-gray-400 text-gray-900 rounded-2xl p-4 hover:bg-gray-900 hover:text-white cursor-pointer"
-            type="submit"
-          >
-            + Create
-          </button>
-        </div>
+        <button
+          className="bg-gray-400 text-gray-900 rounded-2xl py-2 px-8 hover:bg-gray-900 hover:text-white cursor-pointer"
+          type="submit"
+        >
+          + Create
+        </button>
       </form>
     </div>
   );
