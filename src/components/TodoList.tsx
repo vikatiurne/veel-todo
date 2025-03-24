@@ -15,14 +15,15 @@ const todoQueryOptions = () => {
 const TodoList = () => {
   const query = useQuery(todoQueryOptions());
 
-  const { isPending, isError, data } = query;
+  const { isPending, isError, data, error } = query;
 
-  if (isPending) return <p>Loading...</p>;
-  if (isError) return <p>Error!</p>;
+  if (isPending) return <p className="pt-8 text-center text-xl">Loading...</p>;
+  if (isError)
+    return <p className="pt-8 text-center text-xl text-red-500">Error: {error.message}</p>;
 
-  return data.map((todo: ITodo) => (
+  return data.map((todo: ITodo, idx: number) => (
     <TodoItem
-      key={todo.id}
+      key={`${todo.id}_${idx}`}
       id={todo.id}
       title={todo.title}
       completed={todo.completed}
