@@ -6,7 +6,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { ITodo } from "@/types/types";
 import { fetchCreateTodo } from "@/utils/api";
 
-const AddTodoForm = () => {
+const AddTodoForm:React.FC = () => {
   const { register, handleSubmit, reset, formState } = useForm<ITodo>();
   const { errors } = formState;
 

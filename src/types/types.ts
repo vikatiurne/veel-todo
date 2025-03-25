@@ -1,5 +1,5 @@
 export interface ITodo {
-  key?:string
+  key?: string;
   id?: number;
   userId?: number;
   title: string;

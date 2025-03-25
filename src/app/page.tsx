@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import Image from "next/image";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+import Image from "next/image";
 import { Roboto } from "@next/font/google";
 
 import rocket from "./rocket.png";
@@ -14,7 +14,7 @@ const roboto = Roboto({
   weight: ["400", "700"],
 });
 
-const Home = () => {
+const Home:React.FC = () => {
   const [queryClient] = useState(
     () =>
       new QueryClient({

@@ -1,8 +1,9 @@
 "use client";
-import { ITodo } from "@/types/types";
-import { fetchDeleteTodo, fetchUpdateTodo } from "@/utils/api";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
+import { ITodo } from "@/types/types";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+import { fetchDeleteTodo, fetchUpdateTodo } from "@/utils/api";
 
 const TodoItem = (props: ITodo) => {
   const { title, completed, id } = props;
@@ -19,10 +20,9 @@ const TodoItem = (props: ITodo) => {
 
       const prevTodos: ITodo[] = queryClient.getQueryData(["todos"]) ?? [];
 
-      const optimisticTodos: ITodo[] = [
-        { id: 14588, title: title, completed: newCompleted },
-        ...prevTodos,
-      ];
+      const optimisticTodos: ITodo[] = prevTodos.map((todo) =>
+        todo.id === id ? { ...todo, completed: newCompleted } : todo
+      );
 
       queryClient.setQueryData(["todos"], optimisticTodos);
 
@@ -30,6 +30,9 @@ const TodoItem = (props: ITodo) => {
     },
     onError: (err, completed, context) => {
       queryClient.setQueryData(["todos"], context?.prevTodos);
+    },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["todos"] });
     },
   });
 
