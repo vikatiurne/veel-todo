@@ -6,7 +6,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { ITodo } from "@/types/types";
 import { fetchCreateTodo } from "@/utils/api";
 
-const AddTodoForm:React.FC = () => {
+const AddTodoForm: React.FC = () => {
   const { register, handleSubmit, reset, formState } = useForm<ITodo>();
   const { errors } = formState;
 
@@ -21,7 +21,7 @@ const AddTodoForm:React.FC = () => {
 
       const optimisticTodos: ITodo[] = [...prevTodos, { title: data.title }];
 
-      queryClient.setQueryData(["todos"], optimisticTodos);
+      await queryClient.setQueryData(["todos"], optimisticTodos);
 
       return { prevTodos };
     },
